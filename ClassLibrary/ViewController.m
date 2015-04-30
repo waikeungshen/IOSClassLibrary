@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "BannerRollView.h"
+#import "Common.h"
 
 @interface ViewController ()
 
@@ -17,11 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    NSMutableArray *pictures = [NSMutableArray array];
+    for (int i = 1; i <= 5; i++) {
+        NSString *imageName = [NSString stringWithFormat:@"pic%d", i];
+        UIImage *image = [UIImage imageNamed:imageName];
+        [pictures addObject:image];
+    }
+    
+    BannerRollView *bannerRollView = [[BannerRollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPictures:[pictures copy]];
+
+    [self.view addSubview:bannerRollView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end
