@@ -27,9 +27,7 @@
     }
     
     BannerRollView *bannerRollView = [[BannerRollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPictures:[pictures copy]];
-
+    bannerRollView.backgroundColor = [UIColor grayColor];
     [self.view addSubview:bannerRollView];
 }
-
-
 @end

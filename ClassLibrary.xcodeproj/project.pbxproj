@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C29D0801AFD1400005F27A7 /* WaterflowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C29D07D1AFD1400005F27A7 /* WaterflowView.m */; };
+		4C29D0811AFD1400005F27A7 /* WaterflowViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C29D07F1AFD1400005F27A7 /* WaterflowViewCell.m */; };
 		4CD4C78E1AF0C9DB009B2319 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD4C78D1AF0C9DB009B2319 /* main.m */; };
 		4CD4C7911AF0C9DB009B2319 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD4C7901AF0C9DB009B2319 /* AppDelegate.m */; };
 		4CD4C7941AF0C9DB009B2319 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD4C7931AF0C9DB009B2319 /* ViewController.m */; };
@@ -78,6 +80,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C29D07C1AFD1400005F27A7 /* WaterflowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaterflowView.h; path = UIExtension/WaterFlow/WaterflowView.h; sourceTree = "<group>"; };
+		4C29D07D1AFD1400005F27A7 /* WaterflowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaterflowView.m; path = UIExtension/WaterFlow/WaterflowView.m; sourceTree = "<group>"; };
+		4C29D07E1AFD1400005F27A7 /* WaterflowViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaterflowViewCell.h; path = UIExtension/WaterFlow/WaterflowViewCell.h; sourceTree = "<group>"; };
+		4C29D07F1AFD1400005F27A7 /* WaterflowViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaterflowViewCell.m; path = UIExtension/WaterFlow/WaterflowViewCell.m; sourceTree = "<group>"; };
 		4CD4C7881AF0C9DB009B2319 /* ClassLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CD4C78C1AF0C9DB009B2319 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CD4C78D1AF0C9DB009B2319 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -218,6 +224,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C29D07B1AFD13DF005F27A7 /* WaterFlow */ = {
+			isa = PBXGroup;
+			children = (
+				4C29D07C1AFD1400005F27A7 /* WaterflowView.h */,
+				4C29D07D1AFD1400005F27A7 /* WaterflowView.m */,
+				4C29D07E1AFD1400005F27A7 /* WaterflowViewCell.h */,
+				4C29D07F1AFD1400005F27A7 /* WaterflowViewCell.m */,
+			);
+			name = WaterFlow;
+			sourceTree = "<group>";
+		};
 		4CD4C77F1AF0C9DB009B2319 = {
 			isa = PBXGroup;
 			children = (
@@ -499,6 +516,7 @@
 		4CE9138D1AF1D38100FDA356 /* UIExtension */ = {
 			isa = PBXGroup;
 			children = (
+				4C29D07B1AFD13DF005F27A7 /* WaterFlow */,
 				4CE913911AF1D56700FDA356 /* BannerRollView */,
 			);
 			name = UIExtension;
@@ -635,6 +653,8 @@
 				4CD4C8121AF0CAFA009B2319 /* ASIFormDataRequest.m in Sources */,
 				4CD4C84F1AF0D7B0009B2319 /* ResponseBase.m in Sources */,
 				4CD4C7911AF0C9DB009B2319 /* AppDelegate.m in Sources */,
+				4C29D0801AFD1400005F27A7 /* WaterflowView.m in Sources */,
+				4C29D0811AFD1400005F27A7 /* WaterflowViewCell.m in Sources */,
 				4CD4C8201AF0CAFA009B2319 /* ASIS3BucketRequest.m in Sources */,
 				4CD4C8311AF0CAFA009B2319 /* MJRefreshLegendHeader.m in Sources */,
 				4CD4C81A1AF0CAFA009B2319 /* ASICloudFilesContainerXMLParserDelegate.m in Sources */,

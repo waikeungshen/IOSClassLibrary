@@ -12,6 +12,8 @@
     UIImageView *currentImageView; // 当前视图
     UIImageView *nextImageView; // 下一个视图
     UIImageView *previousImageView;  // 上一个视图
+    
+    CGFloat scrollDistance;
 }
 
 @property (strong, nonatomic) UIScrollView *scrollView;
@@ -23,29 +25,13 @@
 
 @implementation BannerRollView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
-- (BannerRollView *) initWithFrame:(CGRect)frame withPictures:(NSArray *)pictures {
+- (BannerRollView *) initWithFrame:(CGRect)frame withPictures:(NSArray *)pictures{
     self = [super initWithFrame:frame];
     if (self) {
         self.pictures = pictures;
         
-        _scrollView = [[UIScrollView alloc] init];
-        _scrollView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-        _scrollView.pagingEnabled = YES;
-        _scrollView.delegate = self;
-        _scrollView.contentSize = CGSizeMake(frame.size.width * 3, 0);
-        _scrollView.contentOffset = CGPointMake(frame.size.width, 0);
-        _scrollView.showsHorizontalScrollIndicator = NO;
-        [self addSubview:_scrollView];
-        
-        _pageControl = [[UIPageControl alloc] init];
+        [self initScrollView];
+        [self initPageControl];
         
         // 初始化上一个视图
         previousImageView = [[UIImageView alloc] init];
@@ -72,6 +58,29 @@
     }
     [self initTimer];
     return self;
+}
+
+- (void)initScrollView {
+    _scrollView = [[UIScrollView alloc] init];
+    _scrollView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    _scrollView.pagingEnabled = YES;
+    _scrollView.delegate = self;
+
+    scrollDistance = _scrollView.frame.size.width;
+    _scrollView.contentSize = CGSizeMake(scrollDistance * 3, 0);
+    _scrollView.contentOffset = CGPointMake(scrollDistance, 0);
+
+    _scrollView.showsHorizontalScrollIndicator = NO;
+    _scrollView.showsVerticalScrollIndicator = NO;
+    [self addSubview:_scrollView];
+}
+
+- (void)initPageControl {
+    _pageControl = [[UIPageControl alloc] init];
+    _pageControl.numberOfPages = _pictures.count;
+    _pageControl.currentPage = 0;
+    _pageControl.center = CGPointMake(scrollDistance/2, _scrollView.frame.size.height - 20);
+    [self addSubview:_pageControl];
 }
 
 - (void)dealloc {
@@ -115,14 +124,9 @@
     _isDraging = NO;
 }
 
-#pragma mark 视图停止滚动
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    NSLog(@"currentIndex : %d", _currentIndex);
-}
-
 #pragma mark 视图滚动
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    float offset = _scrollView.contentOffset.x;
+    CGPoint offset = _scrollView.contentOffset;
     
     if (nextImageView.image == nil || previousImageView.image == nil) {
         // 加载下一个视图
@@ -132,9 +136,9 @@
     }
 
     // 向左
-    if (offset == 0) {
+    if (offset.x == 0) {
         currentImageView.image = previousImageView.image;
-        _scrollView.contentOffset = CGPointMake(_scrollView.frame.size.width, 0);
+        _scrollView.contentOffset = CGPointMake(scrollDistance, 0);
         previousImageView.image = nil;
         if (_currentIndex == 0) {
             _currentIndex = (int)_pictures.count-1;
@@ -144,9 +148,9 @@
     }
     
     // 向右
-    if (offset == _scrollView.frame.size.width * 2) {
+    if (offset.x == scrollDistance * 2) {
         currentImageView.image = nextImageView.image;
-        _scrollView.contentOffset = CGPointMake(_scrollView.frame.size.width, 0);
+        _scrollView.contentOffset = CGPointMake(scrollDistance, 0);
         nextImageView.image = nil;
         if (_currentIndex == _pictures.count-1) {
             _currentIndex = 0;
@@ -154,6 +158,8 @@
             _currentIndex += 1;
         }
     }
+
+    _pageControl.currentPage = _currentIndex;
 }
 
 - (void)move {
@@ -161,10 +167,8 @@
         return;
     }
     CGPoint offset = _scrollView.contentOffset;
-    CGFloat pagewidth = _scrollView.frame.size.width;
-    
     // 向右
-    offset.x += pagewidth;
+    offset.x += scrollDistance;
     
     [_scrollView setContentOffset:offset animated:YES];
 }
