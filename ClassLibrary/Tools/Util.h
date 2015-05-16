@@ -12,6 +12,13 @@
 
 @interface Util : NSObject
 
+/**
+ *  得到单例
+ *
+ *  @return 单例的对象
+ */
++ (id)getInstance;
+
 #pragma mark - 设备
 
 /**
@@ -22,21 +29,21 @@
  *
  *  @return 包含属性与属性值的字典
  */
-+ (NSDictionary *)getDictionaryFromObject:(id) object :(BOOL (^)(NSString *))property;
+- (NSDictionary *)getDictionaryFromObject:(id) object :(BOOL (^)(NSString *))property;
 
 /**
  *  判断屏幕是否为Retain屏幕
  *
  *  @return YES为真，NO为否
  */
-+ (BOOL) isRetinaScreen;
+- (BOOL) isRetinaScreen;
 
 /**
  *  获取设备版本
  *
  *  @return 版本号
  */
-+ (NSString *)currentSystemVersion;
+- (NSString *)currentSystemVersion;
 
 /**
  *  设备版本比较
@@ -45,7 +52,7 @@
  *
  *  @return YES为小过比较版本，NO反之
  */
-//+ (BOOL)versionIsLowerThan:(CGFloat *)targerVersion;
+//- (BOOL)versionIsLowerThan:(CGFloat *)targerVersion;
 
 #pragma mark - label 字符串
 
@@ -56,7 +63,7 @@
  *
  *  @return 字符串长度
  */
-+ (NSInteger)getStringLength:(NSString *)string;
+- (NSInteger)getStringLength:(NSString *)string;
 
 /**
  *  根据label文字自适应label的高度
@@ -65,7 +72,7 @@
  *
  *  @return 自适应后label的高度
  */
-+ (CGFloat)fitLabelHeight:(UILabel *)label;
+- (CGFloat)fitLabelHeight:(UILabel *)label;
 
 /**
  *  根据label文字自适应label的宽度
@@ -74,7 +81,7 @@
  *
  *  @return 自适应后label的宽度
  */
-+ (CGFloat)fitLabelWidth:(UILabel *)label;
+- (CGFloat)fitLabelWidth:(UILabel *)label;
 
 /**
  *  获取字符串的字符长度
@@ -83,7 +90,7 @@
  *
  *  @return 字符长度
  */
-+ (int)getWordCount:(NSString *)string;
+- (int)getWordCount:(NSString *)string;
 
 /**
  *  判断字符串是否为空
@@ -92,7 +99,7 @@
  *
  *  @return 空为YES，不空为NO
  */
-+ (BOOL)stringIsEmpty:(NSString *)string;
+- (BOOL)stringIsEmpty:(NSString *)string;
 
 /**
  *  判断数组是否为空（包括nil，数组count为0）
@@ -101,7 +108,7 @@
  *
  *  @return 空为YES，不空为NO
  */
-+ (BOOL)arrayIsEmpty:(NSArray *)array;
+- (BOOL)arrayIsEmpty:(NSArray *)array;
 
 /**
  *  判断字典是否为空（包括nil，数组count为0）
@@ -110,7 +117,7 @@
  *
  *  @return 空为YES，不空为NO
  */
-+ (BOOL)dictionaryIsEmpty:(NSDictionary *)dicionary;
+- (BOOL)dictionaryIsEmpty:(NSDictionary *)dicionary;
 
 /**
  *  去掉字符串中的空格
@@ -119,7 +126,7 @@
  *
  *  @return 去掉空格的字符串
  */
-+ (NSString *)trimString:(NSString *)string;
+- (NSString *)trimString:(NSString *)string;
 
 #pragma mark - 验证
 
@@ -130,16 +137,25 @@
  *
  *  @return YES为合法，NO为不合法
  */
-+ (BOOL)validateEmail:(NSString *)email;
+- (BOOL)validateEmail:(NSString *)email;
 
 /**
- *  @brief  验证字符串是否为合法的手机号
+ *  验证字符串是否为合法的手机号
  *
  *  @param mobile 手机号字符串
  *
  *  @return YES为合法，NO为不合法
  */
-+ (BOOL)validateMobile:(NSString *)mobile;
+- (BOOL)validateMobile:(NSString *)mobile;
+
+/**
+ *  验证银行卡号的合法性
+ *
+ *  @param bankCardNumber 银行卡号字符串
+ *
+ *  @return YES表示合法，NO表示非法
+ */
+- (BOOL)validateBankCardNumber:(NSString *)bankCardNumber;
 
 #pragma mark - 存取
 /**
@@ -149,19 +165,19 @@
  *
  *  @return 路径
  */
-+ (NSString *)getDocumentFilePath:(NSString *)filename;
+- (NSString *)getDocumentFilePath:(NSString *)filename;
 
 
 #pragma mark - 键盘
 /**
- *  @brief  隐藏键盘
+ *  隐藏键盘
  */
 - (void)hideKeyWindow;
 
 #pragma mark - 界面
 
 /**
- *  @brief  从storyboard中根据secenename获取UIViewController
+ *  从storyboard中根据secenename获取UIViewController
  *
  *  @param storyboard storyboard name
  *  @param sceneName secene name
@@ -174,7 +190,7 @@
 #pragma mark - tableviewcell 操作
 
 /**
- *  @brief  在tableview注册自定义的tableviewcell
+ *  在tableview注册自定义的tableviewcell
  *
  *  @param xib        xib文件名
  *  @param identifier 标示字符串
@@ -183,7 +199,7 @@
 - (void)registerTableViewCellForXib:(NSString *)xib Identifier:(NSString *)identifier TableView:(UITableView *)tableview;
 
 /**
- *  @brief  根据identifier获取tableviewcell，indexpath为nil是arc模式，indexpath不为nil实mrc模式
+ *  根据identifier获取tableviewcell，indexpath为nil是arc模式，indexpath不为nil实mrc模式
  *
  *  @param identifier 标示字符串
  *  @param tableview  tableview
@@ -196,7 +212,7 @@
 #pragma mark - collectioncell 操作
 
 /**
- *  @brief  在collectionview注册自定义的collectioncell
+ *  在collectionview注册自定义的collectioncell
  *
  *  @param xib            xib文件名
  *  @param identifier     标示字符串
@@ -205,7 +221,7 @@
 - (void)registerCollectionCellForXib:(NSString *)xib Identifier:(NSString *)identifier CollectionView:(UICollectionView *)collectionView;
 
 /**
- *  @brief  根据identifier获取collectioncell
+ *  根据identifier获取collectioncell
  *
  *  @param identifier     标示字符串
  *  @param collectionView collectionView
@@ -218,7 +234,7 @@
 #pragma mark - xib 操作
 
 /**
- *  @brief  创建xib，获取index索引视图
+ *  创建xib，获取index索引视图
  *
  *  @param xib   xib 文件
  *  @param index 索引
@@ -230,17 +246,26 @@
 #pragma mark - 系统短信电话功能
 
 /**
- *  @brief  打电话
+ *  打电话
  *
  *  @param mobile 电话号码
  */
 - (void)callMobile:(NSString *)mobile;
 
 /**
- *  @brief  发短信
+ *  发短信
  *
  *  @param mobile 电话号码
  */
 - (void)sendMessageToMobile:(NSString *)mobile;
 
+#pragma mark - View 相关
+/**
+ *  给view截屏
+ *
+ *  @param view 需要截屏的view
+ *
+ *  @return 截取后获得的图像
+ */
+- (UIImage *)getImageFromView:(UIView *)view;
 @end

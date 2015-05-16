@@ -12,7 +12,17 @@
 
 @implementation Util
 
-+ (NSDictionary *)getDictionaryFromObject:(id)object :(BOOL (^)(NSString *))property {
++ (id)getInstance {
+    __strong static Util *instance = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[Util alloc] init];
+    });
+    return instance;
+}
+
+- (NSDictionary *)getDictionaryFromObject:(id)object :(BOOL (^)(NSString *))property {
     NSArray *propertyKeys = [object propertyKeys]; // 属性名数组
     NSMutableArray *propertyArray = [NSMutableArray array];
     NSMutableArray *valueArray = [NSMutableArray array];
@@ -35,7 +45,7 @@
     return returnDic;
 }
 
-+ (BOOL)isRetinaScreen {
+- (BOOL)isRetinaScreen {
     CGSize screenSize = [[UIScreen mainScreen] currentMode].size;
     if ((screenSize.width >= 639.9f) && (fabs(screenSize.height >= 959.9f))) {
         return YES;
@@ -43,7 +53,7 @@
     return NO;
 }
 
-+ (NSString *)currentSystemVersion {
+- (NSString *)currentSystemVersion {
     CGFloat versionNumber = 0.f;
     NSString *version = [UIDevice currentDevice].systemVersion;
     if (version) {
@@ -52,7 +62,7 @@
     return [NSString stringWithFormat:@"%.1f", versionNumber];
 }
 
-//+ (BOOL)versionIsLowerThan:(CGFloat *)targerVersion {
+//- (BOOL)versionIsLowerThan:(CGFloat *)targerVersion {
 //    CGFloat versionNumber = 0.f;
 //    NSString *version = [UIDevice currentDevice].systemVersion;
 //    if (version) {
@@ -62,13 +72,13 @@
 //    return (versionNumber <= targerVersion) ? YES : NO;
 //}
 
-+ (NSInteger)getStringLength:(NSString *)string {
+- (NSInteger)getStringLength:(NSString *)string {
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
     NSData *da = [string dataUsingEncoding:enc];
     return [da length];
 }
 
-+ (CGFloat)fitLabelHeight:(UILabel *)label {
+- (CGFloat)fitLabelHeight:(UILabel *)label {
     label.numberOfLines = 0;
     CGSize size = [label sizeThatFits:CGSizeMake(label.frame.size.width, 0)];
     [label.text sizeWithFont:label.font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
@@ -80,7 +90,7 @@
     return label.frame.size.height;
 }
 
-+ (CGFloat)fitLabelWidth:(UILabel *)label {
+- (CGFloat)fitLabelWidth:(UILabel *)label {
     label.numberOfLines = 0;
     CGSize size = [label sizeThatFits:CGSizeMake(0, label.frame.size.height)];
     [label.text sizeWithFont:label.font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
@@ -92,7 +102,7 @@
     return label.frame.size.width;
 }
 
-+ (int)getWordCount:(NSString *)string {
+- (int)getWordCount:(NSString *)string {
     int i, n=[string length], l = 0, a = 0, b = 0;
     unichar c;
     for (i = 0; i < n; i++) {
@@ -111,7 +121,7 @@
     return l+(int)ceilf((float)(a+b)/2.0);
 }
 
-+ (BOOL)stringIsEmpty:(NSString *)string {
+- (BOOL)stringIsEmpty:(NSString *)string {
     if ([string isKindOfClass:[NSNull class]]) {
         return YES;
     }
@@ -122,7 +132,7 @@
     return NO;
 }
 
-+ (BOOL)arrayIsEmpty:(NSArray *)array {
+- (BOOL)arrayIsEmpty:(NSArray *)array {
     if ([array isKindOfClass:[NSNull class]]) {
         return YES;
     }
@@ -132,7 +142,7 @@
     return NO;
 }
 
-+ (BOOL)dictionaryIsEmpty:(NSDictionary *)dicionary {
+- (BOOL)dictionaryIsEmpty:(NSDictionary *)dicionary {
     if ([dicionary isKindOfClass:[NSNull class]]) {
         return YES;
     }
@@ -142,7 +152,7 @@
     return NO;
 }
 
-+ (NSString *)trimString:(NSString *)string {
+- (NSString *)trimString:(NSString *)string {
     if (![self stringIsEmpty:string]) {
         NSString *text = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         return text;
@@ -150,7 +160,7 @@
     return string;
 }
 
-+ (BOOL)validateEmail:(NSString *)email {
+- (BOOL)validateEmail:(NSString *)email {
     if((0 != [email rangeOfString:@"@"].length) &&
        (0 != [email rangeOfString:@"."].length)) {
         
@@ -190,7 +200,7 @@
         return NO;
 }
 
-+ (BOOL)validateMobile:(NSString *)mobile {
+- (BOOL)validateMobile:(NSString *)mobile {
     /**
      * 手机号码
      * 移动：134[0-8],135,136,137,138,139,150,151,157,158,159,182,187,188
@@ -238,7 +248,18 @@
     }
 }
 
-+ (NSString *)getDocumentFilePath:(NSString *)filename {
+- (BOOL)validateBankCardNumber:(NSString *)bankCardNumber {
+    BOOL flag;
+    if (bankCardNumber.length <= 0) {
+        flag = NO;
+        return flag;
+    }
+    NSString *regex2 = @"^(\\d{15,30})";
+    NSPredicate *bankCardPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex2];
+    return [bankCardPredicate evaluateWithObject:bankCardNumber];
+}
+
+- (NSString *)getDocumentFilePath:(NSString *)filename {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     return [documentsDirectory stringByAppendingPathComponent:filename];
@@ -303,5 +324,19 @@
 
 - (void)sendMessageToMobile:(NSString *)mobile {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@", mobile]]];
+}
+
+#pragma mark - View 相关
+
+- (UIImage *)getImageFromView:(UIView *)view {
+    // 创建一个基于位图的图形上下文并指定大小为view.bounds.size
+    UIGraphicsBeginImageContext(view.bounds.size);
+    //renderInContext 呈现接受者及其子范围到指定的上下文
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    // 返回一个基于当前图形上下文的图片
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    // 移除栈顶的基于当前位图的图形上下文
+    UIGraphicsEndImageContext();
+    return image;
 }
 @end

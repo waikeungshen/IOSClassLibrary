@@ -29,7 +29,7 @@
 }
 
 -(NSDictionary *)toDictionary {
-    NSDictionary *dic = [Util getDictionaryFromObject:self :^BOOL(NSString *property) {
+    NSDictionary *dic = [[Util getInstance] getDictionaryFromObject:self :^BOOL(NSString *property) {
         if ([property isEqualToString:@"requestURL"] ||
             [property isEqualToString:@"addition"]) {
             return NO;

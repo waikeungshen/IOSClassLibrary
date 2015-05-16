@@ -64,6 +64,7 @@
 		4CD4C8491AF0CECA009B2319 /* HTTPNetEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD4C8481AF0CECA009B2319 /* HTTPNetEngine.m */; };
 		4CD4C84C1AF0CFDB009B2319 /* CommandBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD4C84B1AF0CFDB009B2319 /* CommandBase.m */; };
 		4CD4C84F1AF0D7B0009B2319 /* ResponseBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD4C84E1AF0D7B0009B2319 /* ResponseBase.m */; };
+		4CE2999A1B072B2A00C70975 /* UIView+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE299991B072B2A00C70975 /* UIView+Gradient.m */; };
 		4CE913891AF1BF3700FDA356 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE913881AF1BF3700FDA356 /* Util.m */; };
 		4CE9138C1AF1C8E600FDA356 /* NSObject+Reflect.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE9138B1AF1C8E600FDA356 /* NSObject+Reflect.m */; };
 		4CE913941AF1D5BF00FDA356 /* BannerRollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE913931AF1D5BF00FDA356 /* BannerRollView.m */; };
@@ -191,6 +192,8 @@
 		4CD4C84B1AF0CFDB009B2319 /* CommandBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommandBase.m; path = Network/CommandBase.m; sourceTree = "<group>"; };
 		4CD4C84D1AF0D7B0009B2319 /* ResponseBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResponseBase.h; path = Network/ResponseBase.h; sourceTree = "<group>"; };
 		4CD4C84E1AF0D7B0009B2319 /* ResponseBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResponseBase.m; path = Network/ResponseBase.m; sourceTree = "<group>"; };
+		4CE299981B072B2A00C70975 /* UIView+Gradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Gradient.h"; path = "Tools/UIView+Gradient.h"; sourceTree = "<group>"; };
+		4CE299991B072B2A00C70975 /* UIView+Gradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Gradient.m"; path = "Tools/UIView+Gradient.m"; sourceTree = "<group>"; };
 		4CE913871AF1BF3700FDA356 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Util.h; path = Tools/Util.h; sourceTree = "<group>"; };
 		4CE913881AF1BF3700FDA356 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Util.m; path = Tools/Util.m; sourceTree = "<group>"; };
 		4CE9138A1AF1C8E600FDA356 /* NSObject+Reflect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Reflect.h"; path = "Tools/NSObject+Reflect.h"; sourceTree = "<group>"; };
@@ -492,10 +495,9 @@
 		4CD4C8451AF0CD90009B2319 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				4CE2999B1B072D1E00C70975 /* Category */,
 				4CE913871AF1BF3700FDA356 /* Util.h */,
 				4CE913881AF1BF3700FDA356 /* Util.m */,
-				4CE9138A1AF1C8E600FDA356 /* NSObject+Reflect.h */,
-				4CE9138B1AF1C8E600FDA356 /* NSObject+Reflect.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -511,6 +513,17 @@
 				4CD4C8481AF0CECA009B2319 /* HTTPNetEngine.m */,
 			);
 			name = Network;
+			sourceTree = "<group>";
+		};
+		4CE2999B1B072D1E00C70975 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				4CE9138A1AF1C8E600FDA356 /* NSObject+Reflect.h */,
+				4CE9138B1AF1C8E600FDA356 /* NSObject+Reflect.m */,
+				4CE299981B072B2A00C70975 /* UIView+Gradient.h */,
+				4CE299991B072B2A00C70975 /* UIView+Gradient.m */,
+			);
+			name = Category;
 			sourceTree = "<group>";
 		};
 		4CE9138D1AF1D38100FDA356 /* UIExtension */ = {
@@ -679,6 +692,7 @@
 				4CD4C81E1AF0CAFA009B2319 /* ASIS3Bucket.m in Sources */,
 				4CD4C81B1AF0CAFA009B2319 /* ASICloudFilesObject.m in Sources */,
 				4CD4C8111AF0CAFA009B2319 /* ASIDownloadCache.m in Sources */,
+				4CE2999A1B072B2A00C70975 /* UIView+Gradient.m in Sources */,
 				4CD4C8281AF0CAFA009B2319 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
