@@ -10,5 +10,7 @@
 
 @interface WaterflowViewCell : UIView
 
+/// 标示符
 @property (strong, nonatomic) NSString *identifier;
+
 @end

@@ -65,6 +65,7 @@
 		4CD4C84C1AF0CFDB009B2319 /* CommandBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD4C84B1AF0CFDB009B2319 /* CommandBase.m */; };
 		4CD4C84F1AF0D7B0009B2319 /* ResponseBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD4C84E1AF0D7B0009B2319 /* ResponseBase.m */; };
 		4CE2999A1B072B2A00C70975 /* UIView+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE299991B072B2A00C70975 /* UIView+Gradient.m */; };
+		4CE7C1BA1B1172F400992FDC /* UIButton+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE7C1B91B1172F400992FDC /* UIButton+Add.m */; };
 		4CE913891AF1BF3700FDA356 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE913881AF1BF3700FDA356 /* Util.m */; };
 		4CE9138C1AF1C8E600FDA356 /* NSObject+Reflect.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE9138B1AF1C8E600FDA356 /* NSObject+Reflect.m */; };
 		4CE913941AF1D5BF00FDA356 /* BannerRollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE913931AF1D5BF00FDA356 /* BannerRollView.m */; };
@@ -194,6 +195,8 @@
 		4CD4C84E1AF0D7B0009B2319 /* ResponseBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResponseBase.m; path = Network/ResponseBase.m; sourceTree = "<group>"; };
 		4CE299981B072B2A00C70975 /* UIView+Gradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Gradient.h"; path = "Tools/UIView+Gradient.h"; sourceTree = "<group>"; };
 		4CE299991B072B2A00C70975 /* UIView+Gradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Gradient.m"; path = "Tools/UIView+Gradient.m"; sourceTree = "<group>"; };
+		4CE7C1B81B1172F400992FDC /* UIButton+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+Add.h"; path = "Tools/UIButton+Add.h"; sourceTree = "<group>"; };
+		4CE7C1B91B1172F400992FDC /* UIButton+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Add.m"; path = "Tools/UIButton+Add.m"; sourceTree = "<group>"; };
 		4CE913871AF1BF3700FDA356 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Util.h; path = Tools/Util.h; sourceTree = "<group>"; };
 		4CE913881AF1BF3700FDA356 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Util.m; path = Tools/Util.m; sourceTree = "<group>"; };
 		4CE9138A1AF1C8E600FDA356 /* NSObject+Reflect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Reflect.h"; path = "Tools/NSObject+Reflect.h"; sourceTree = "<group>"; };
@@ -522,6 +525,8 @@
 				4CE9138B1AF1C8E600FDA356 /* NSObject+Reflect.m */,
 				4CE299981B072B2A00C70975 /* UIView+Gradient.h */,
 				4CE299991B072B2A00C70975 /* UIView+Gradient.m */,
+				4CE7C1B81B1172F400992FDC /* UIButton+Add.h */,
+				4CE7C1B91B1172F400992FDC /* UIButton+Add.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -646,6 +651,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CE7C1BA1B1172F400992FDC /* UIButton+Add.m in Sources */,
 				4CD4C8251AF0CAFA009B2319 /* Reachability.m in Sources */,
 				4CE9138C1AF1C8E600FDA356 /* NSObject+Reflect.m in Sources */,
 				4CD4C8321AF0CAFA009B2319 /* UIScrollView+MJExtension.m in Sources */,
@@ -766,7 +772,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"${SDK_DIR}/usr/include/libxml2",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -806,7 +812,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"${SDK_DIR}/usr/include/libxml2",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

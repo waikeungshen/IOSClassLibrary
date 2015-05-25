@@ -30,4 +30,5 @@
     bannerRollView.backgroundColor = [UIColor grayColor];
     [self.view addSubview:bannerRollView];
 }
+
 @end
